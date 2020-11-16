@@ -23,8 +23,4 @@ IoU computes intersection over the union of the two bounding boxes, the bounding
 
 
 
-To implement Mask RCNN, follow the steps given below. 
-Step 1: Clone the repository. Use the following command to clone the repository:
-git clone https://github.com/matterport/Mask_RCNN.git
-
 
