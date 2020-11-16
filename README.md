@@ -19,6 +19,12 @@ Like any other model, Mask RCNN uses anchor boxes to detect multiple objects inc
 To predict multiple objects or multiple instances of objects in an image, Mask R-CNN makes thousands of predictions. Final object detection is done by removing anchor boxes that belong to the background class and the remaining ones are filtered by their confidence score. We find the anchor boxes with IoU greater than 0.5. Anchor boxes with the greatest confidence score are selected using Non-Max suppression explained below.
 
 IoU = Area of the intersection / Area of the union. 
-IoU computes intersection over the union of the two bounding boxes, the bounding box for the ground truth and the bounding box for the predicted box by algorithm
+IoU computes intersection over the union of the two bounding boxes, the bounding box for the ground truth and the bounding box for the predicted box by algorithm.
+
+
+
+To implement Mask RCNN, follow the steps given below. 
+Step 1: Clone the repository. Use the following command to clone the repository:
+git clone https://github.com/matterport/Mask_RCNN.git
 
 
