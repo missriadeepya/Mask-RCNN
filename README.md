@@ -1,5 +1,10 @@
 # Mask-RCNN
 What is Mask RCNN? How to implement it?
+
+
+
+
+
 Mask RCNN is the extended version of Faster RCNN. Mask RCNN does instance segmentation. Instance segmentation is a combination of object detection and semantic segmentation. Object detection helps detect objects in an image, classify individual objects and localize each object instance using a bounding box. In contrast, Semantic Segmentation detects all the objects present in a picture at the pixel level. 
 Semantic segmentation groups pixels in a semantically meaningful way. Pixels belonging to a person, road, building, fence, bicycle, cars or any other objects are grouped separately. Instance segmentation assigns a label to each pixel of the image.
 How does Mask R-CNN work?
@@ -23,4 +28,4 @@ IoU computes intersection over the union of the two bounding boxes, the bounding
 
 
 
-
+Check out the codes to implement Mask RCNN from the "Implement Mask RCNN" file in this repository. 
