@@ -4,18 +4,24 @@ Machine vision is one of the booming fields of machine learning. While there are
 
 
 Let’s start by understanding **what Mask RCNN is**.
+
+
 Mask RCNN is a model that helps detect various objects in any given image. To put it in simple words, Mask RCNN is the extended version of Faster RCNN. Mask RCNN does instance segmentation. 
 
 
 
 
 **What is Instance Segmentation?**
+
+
 Instance segmentation is a combination of object detection and semantic segmentation. Object detection helps detect objects in an image, classify individual objects and localize each object instance using a bounding box. In contrast, Semantic Segmentation detects all the objects present in a picture at the pixel level. Thus, it enables us to detect objects in an image while precisely segmenting a mask for each object instance.
 Semantic segmentation groups pixels in a meaningful way. Pixels belonging to a person, road, building, fence, bicycle, cars or any other objects grouped separately. Instance segmentation assigns a label to each pixel of the image.
 
-![instance segmentation](/images/instancesegmantation.png)
+![instance segmentation](/images/instancesegmantation.jpeg)
 
 **How does Mask R-CNN work?**
+
+
 To put it in simple words, Mask R-CNN model is divided into two parts:
 *Region proposal network (RPN) to propose candidate object bounding boxes.
 *Binary mask classifier to generate a mask for every class.
@@ -27,7 +33,7 @@ Next, The RoI Align network gives out multiple bounding boxes rather than a sing
 The warped features thus obtained are then fed into fully connected layers to make classification using softmax. Then the boundary box prediction is further refined using a regression model.
 The features are also fed into Mask classifier, which consists of two CNN’s to generate a binary mask for each Region of Interest. Mask Classifier allows the network to create masks for every class without competing among several classes.
 
-![Mask RCNN2](/images/maskrcnn2.png)
+![Mask RCNN2](/images/maskrcnn2.jpeg)
 
 Like any other model, Mask RCNN uses anchor boxes to detect multiple objects including overlapping objects in an image. This process increases the speed and efficiency of object detection.  Anchor boxes are a set of predefined bounding boxes of a certain height and width. These boxes are defined to capture the scale and aspect ratio of specific object classes you want to detect.
 
@@ -45,6 +51,8 @@ We find the anchor boxes with IoU greater than 0.5.
 
 
 Training and Loss function for RPN:
+
+
 L({pi},{ti})=1/Ncls(∑ipi,pi*))+ Nreg(∑ipi*x Lreg(ti, ti*))
 
 
