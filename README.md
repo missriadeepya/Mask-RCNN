@@ -98,3 +98,133 @@ git clone https://github.com/matterport/Mask_RCNN.git
 cd Mask_RCNN$ 
 python setup.py install
 ```
+
+
+**Step 2: Download the pre-trained weights for COCO model**
+
+```
+You can download the model from this website- https://github.com/matterport/Mask_RCNN/releases/download/v2.0/mask_rcnn_coco.h5
+Place the file in the Mask_RCNN folder with name “mask_rcnn_coco.h5”
+```
+
+**Step 3: Install dependencies**
+
+```
+numpy
+scipy
+Pillow
+cython
+matplotlib
+scikit-image
+tensorflow>=1.3.0
+keras>=2.0.8
+opencv-python
+h5py
+imgaug
+IPython
+```
+
+
+**Step 4: Importing required libraries:**
+
+
+Create a new Python notebook inside the “samples” folder of the cloned Mask_RCNN repository.
+
+```
+import os
+import sys
+import random
+import math
+import numpy as np
+import skimage.io
+import matplotlib
+import matplotlib.pyplot as plt
+ROOT_DIR = os.path.abspath("../")
+
+import warnings
+warnings.filterwarnings("ignore")
+sys.path.append(ROOT_DIR)  # To find local version of the library
+from mrcnn import utils
+import mrcnn.model as modellib
+from mrcnn import visualize
+sys.path.append(os.path.join(ROOT_DIR, "samples/coco/"))  
+import coco
+
+%matplotlib inline
+```
+
+**Step 5: Define the path for the pretrained weights and the images**
+```
+# Directory to save logs and trained model
+MODEL_DIR = os.path.join(ROOT_DIR, "logs")
+
+# Local path to trained weights file
+COCO_MODEL_PATH = os.path.join('', "mask_rcnn_coco.h5")
+
+# Download COCO trained weights from Releases if needed
+if not os.path.exists(COCO_MODEL_PATH):
+    utils.download_trained_weights(COCO_MODEL_PATH)
+
+# Directory of images to run detection on
+IMAGE_DIR = os.path.join(ROOT_DIR, "images")
+```
+
+**Step 6:Create an inference class**
+```
+class InferenceConfig(coco.CocoConfig):
+    # Set batch size to 1 since we'll be running inference on
+    # one image at a time. Batch size = GPU_COUNT * IMAGES_PER_GPU
+    GPU_COUNT = 1
+    IMAGES_PER_GPU = 1
+
+config = InferenceConfig()
+config.display()
+```
+
+**Step 7: Loading weights**
+```
+model = modellib.MaskRCNN(mode="inference", model_dir='mask_rcnn_coco.hy', config=config)
+
+# Load weights trained on MS-COCO
+model.load_weights('mask_rcnn_coco.h5', by_name=True)
+```
+
+**Step 8: Define the classes**
+```
+class_names = ['BG', 'person', 'bicycle', 'car', 'motorcycle', 'airplane',
+               'bus', 'train', 'truck', 'boat', 'traffic light',
+               'fire hydrant', 'stop sign', 'parking meter', 'bench', 'bird',
+               'cat', 'dog', 'horse', 'sheep', 'cow', 'elephant', 'bear',
+               'zebra', 'giraffe', 'backpack', 'umbrella', 'handbag', 'tie',
+               'suitcase', 'frisbee', 'skis', 'snowboard', 'sports ball',
+               'kite', 'baseball bat', 'baseball glove', 'skateboard',
+               'surfboard', 'tennis racket', 'bottle', 'wine glass', 'cup',
+               'fork', 'knife', 'spoon', 'bowl', 'banana', 'apple',
+               'sandwich', 'orange', 'broccoli', 'carrot', 'hot dog', 'pizza',
+               'donut', 'cake', 'chair', 'couch', 'potted plant', 'bed',
+               'dining table', 'toilet', 'tv', 'laptop', 'mouse', 'remote',
+               'keyboard', 'cell phone', 'microwave', 'oven', 'toaster',
+               'sink', 'refrigerator', 'book', 'clock', 'vase', 'scissors',
+               'teddy bear', 'hair drier', 'toothbrush']
+```
+**Step 9: Testing the model**
+```
+results = model.detect([image], verbose=1)
+
+# Visualize results
+r = results[0]
+visualize.display_instances(image, r['rois'], r['masks'], r['class_ids'], class_names, r['scores'])
+```
+**Visualizing separate masks**
+```
+for i in range(mask.shape[2]):
+    temp = skimage.io.imread('sample.jpg')
+    for j in range(temp.shape[2]):
+        temp[:,:,j] = temp[:,:,j] * mask[:,:,i]
+    plt.figure(figsize=(8,8))
+    plt.imshow(temp)
+```
+
+
+
+You can train your own custom dataset and implement Instance segmentation on it as well. 
