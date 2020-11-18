@@ -1,7 +1,14 @@
 # Mask-RCNN
 Machine vision is one of the booming fields of machine learning. While there are several models and algorithms like RCNN, Faster RCNN, SSD Mobilenet to help implement machine vision, Mask RCNN is the most efficient and accurate model of them all. But why?
+
+
+
 Let’s start by understanding **what Mask RCNN is**.
 Mask RCNN is a model that helps detect various objects in any given image. To put it in simple words, Mask RCNN is the extended version of Faster RCNN. Mask RCNN does instance segmentation. 
+
+
+
+
 **What is Instance Segmentation?**
 Instance segmentation is a combination of object detection and semantic segmentation. Object detection helps detect objects in an image, classify individual objects and localize each object instance using a bounding box. In contrast, Semantic Segmentation detects all the objects present in a picture at the pixel level. Thus, it enables us to detect objects in an image while precisely segmenting a mask for each object instance.
 Semantic segmentation groups pixels in a meaningful way. Pixels belonging to a person, road, building, fence, bicycle, cars or any other objects grouped separately. Instance segmentation assigns a label to each pixel of the image.
@@ -34,17 +41,40 @@ We find the anchor boxes with IoU greater than 0.5.
 ![Prediction2](/images/prediction2.png)
 
 **Math behind Mask RCNN:**
+
+
+
 Training and Loss function for RPN:
 L({pi},{ti})=1/Ncls(∑ipi,pi*))+ Nreg(∑ipi*x Lreg(ti, ti*))
+
+
 where, 
 pi = predicted probability of anchors contains an object or not.
+
+
+
 pi* = ground truth value of anchors contains and object or not.
+
+
 ti = coordinates of predicted anchors.
-ti* = ground truth coordinate associated with bounding boxes. 
+
+
+ti* = ground truth coordinate associated with bounding boxes.
+
+
 Lcls = Classifier Loss (binary log loss over two classes).
+
+
+
 Lreg = Regression Loss (Here, Lreg  = R(ti-ti*) where R is smooth L1 loss)
+
+
 Ncls = Normalization parameter of mini-batch size (~256).
+
+
 Nreg = Normalization parameter of regression (equal to number of anchor locations ~2400).
+
+
 ƛ=10 In order to make n=btoh loss parameter equally weighted right
 
 
