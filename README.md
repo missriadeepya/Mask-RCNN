@@ -17,7 +17,7 @@ Mask RCNN is a model that helps detect various objects in any given image. To pu
 Instance segmentation is a combination of object detection and semantic segmentation. Object detection helps detect objects in an image, classify individual objects and localize each object instance using a bounding box. In contrast, Semantic Segmentation detects all the objects present in a picture at the pixel level. Thus, it enables us to detect objects in an image while precisely segmenting a mask for each object instance.
 Semantic segmentation groups pixels in a meaningful way. Pixels belonging to a person, road, building, fence, bicycle, cars or any other objects grouped separately. Instance segmentation assigns a label to each pixel of the image.
 
-![instance segmentation](/images/instancesegmantation.jpg)
+![instance segmentation](/images/instancesegmentation.jpg)
 
 **How does Mask R-CNN work?**
 
