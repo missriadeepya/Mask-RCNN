@@ -86,3 +86,16 @@ Nreg = Normalization parameter of regression (equal to number of anchor location
 ƛ=10 In order to make n=btoh loss parameter equally weighted right
 
 
+
+
+**Implementing MASK RCNN**
+
+
+**Step 1: Clone the Mask R-CNN repository**
+
+
+'''
+git clone https://github.com/matterport/Mask_RCNN.git
+cd Mask_RCNN$ 
+python setup.py install
+'''
